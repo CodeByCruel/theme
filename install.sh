@@ -182,7 +182,34 @@ install() {
     fi
     ok "Installer API"
 
-    # ── 10. Permissions ──
+    # ── 10. Admin Theme Settings ──
+    step "Installing admin theme settings"
+    mkdir -p "$PANEL/app/Http/Controllers/Admin"
+    cp "$THEME/app/Http/Controllers/Admin/BsdkThemeController.php" \
+       "$PANEL/app/Http/Controllers/Admin/BsdkThemeController.php" 2>>"$LOG"
+    cp "$THEME/routes/bsdk-routes.php" "$PANEL/routes/bsdk-routes.php" 2>>"$LOG"
+    cp "$THEME/config/bsdk-presets.php" "$PANEL/config/bsdk-presets.php" 2>>"$LOG"
+
+    mkdir -p "$PANEL/resources/views/admin"
+    cp "$THEME/resources/views/admin/bsdk-theme.blade.php" \
+       "$PANEL/resources/views/admin/bsdk-theme.blade.php" 2>>"$LOG"
+
+    # Append admin routes
+    if [ -f "$web" ] && ! grep -q "bsdk-routes" "$web"; then
+        echo "" >> "$web"
+        echo "require __DIR__ . '/bsdk-routes.php';" >> "$web"
+    fi
+    ok "Admin theme settings"
+
+    # ── 11. Database Migration ──
+    step "Running database migration"
+    if php artisan migrate --force 2>>"$LOG"; then
+        ok "Migration complete"
+    else
+        warn "Migration may have failed (table might already exist)"
+    fi
+
+    # ── 12. Permissions ──
     step "Setting permissions"
     chown -R www-data:www-data "$PANEL" 2>>"$LOG"
     ok "Done"
@@ -235,6 +262,10 @@ EOF
     echo -e "  ${CYAN}Theme:${NC}    BSDK V1"
     echo -e "  ${CYAN}Made by:${NC}  Akshit"
     echo ""
+    echo -e "  ${WHITE}Admin Settings:${NC}"
+    echo -e "  ${DIM}Visit ${BOLD}${PANEL_URL:-http://your-panel}/admin/bsdk-theme${NC}"
+    echo -e "  ${DIM}to customize theme, colors, presets, and more${NC}"
+    echo ""
     echo -e "  ${WHITE}Customize:${NC}"
     echo -e "  ${DIM}Edit ${BOLD}$PANEL/storage/app/bsdk-theme.json${NC}"
     echo -e "  ${DIM}Then run: ${BOLD}sudo bash install.sh --rebuild${NC}"
@@ -271,12 +302,17 @@ uninstall() {
     rm -f "$PANEL/storage/app/bsdk-theme.json"
     rm -rf "$PANEL/app/Http/Controllers/Api/Client/InstallerController.php"
     rm -f "$PANEL/routes/installer.php"
+    rm -rf "$PANEL/app/Http/Controllers/Admin/BsdkThemeController.php"
+    rm -f "$PANEL/routes/bsdk-routes.php"
+    rm -f "$PANEL/config/bsdk-presets.php"
+    rm -rf "$PANEL/resources/views/admin"
 
     # Remove import
     sed -i "/import '.\/custom.css'/d" "$PANEL/resources/scripts/index.tsx" 2>/dev/null
 
-    # Remove installer route
+    # Remove routes
     sed -i "/require.*installer.php/d" "$PANEL/routes/web.php" 2>/dev/null
+    sed -i "/require.*bsdk-routes.php/d" "$PANEL/routes/web.php" 2>/dev/null
 
     build
     caches
@@ -292,7 +328,6 @@ rebuild() {
     local cfg="$PANEL/storage/app/bsdk-theme.json"
     if [ -f "$cfg" ]; then
         step "Regenerating CSS from theme.json"
-        # The wrapper blade reads this file on load
         ok "Config will apply on next page load"
     fi
 
