@@ -121,13 +121,14 @@ install() {
     # ── 2. Custom CSS ──
     step "Installing theme CSS"
     cp "$THEME/resources/scripts/custom.css" "$PANEL/resources/scripts/custom.css" 2>>"$LOG"
+    cp "$THEME/resources/scripts/hyper-components.css" "$PANEL/resources/scripts/hyper-components.css" 2>>"$LOG"
 
     # Inject import into index.tsx
     local idx="$PANEL/resources/scripts/index.tsx"
     if [ -f "$idx" ] && ! grep -q "custom.css" "$idx"; then
         sed -i "1a import './custom.css';" "$idx" 2>>"$LOG"
     fi
-    ok "custom.css + import"
+    ok "custom.css + hyper-components.css + import"
 
     # ── 3. Login Page ──
     step "Installing login page"
@@ -154,6 +155,21 @@ install() {
     cp "$THEME/resources/views/layouts/master.blade.php" \
        "$PANEL/resources/views/layouts/master.blade.php" 2>>"$LOG"
     ok "master.blade.php"
+
+    # ── 6b. Hyper React Components ──
+    step "Installing Hyper components"
+    mkdir -p "$PANEL/resources/scripts/components/hyper"
+    mkdir -p "$PANEL/resources/scripts/components/hyper/settings"
+    mkdir -p "$PANEL/resources/scripts/components/hyper/addons"
+    cp "$THEME/resources/scripts/components/hyper/HyperSidebar.tsx" \
+       "$PANEL/resources/scripts/components/hyper/HyperSidebar.tsx" 2>>"$LOG"
+    cp "$THEME/resources/scripts/components/hyper/HyperDashboard.tsx" \
+       "$PANEL/resources/scripts/components/hyper/HyperDashboard.tsx" 2>>"$LOG"
+    cp "$THEME/resources/scripts/components/hyper/settings/HyperSettings.tsx" \
+       "$PANEL/resources/scripts/components/hyper/settings/HyperSettings.tsx" 2>>"$LOG"
+    cp "$THEME/resources/scripts/components/hyper/addons/AddonSettings.tsx" \
+       "$PANEL/resources/scripts/components/hyper/addons/AddonSettings.tsx" 2>>"$LOG"
+    ok "Hyper components installed"
 
     # ── 7. Public Assets ──
     step "Installing assets"
@@ -212,6 +228,15 @@ install() {
     mkdir -p "$PANEL/resources/views/admin"
     cp "$THEME/resources/views/admin/bsdk-theme.blade.php" \
        "$PANEL/resources/views/admin/bsdk-theme.blade.php" 2>>"$LOG"
+
+    # ── 10b. Settings & Addon API Controllers ──
+    step "Installing Settings & Addon API controllers"
+    mkdir -p "$PANEL/app/Http/Controllers/Api/Admin"
+    cp "$THEME/app/Http/Controllers/Api/Admin/BsdkSettingsController.php" \
+       "$PANEL/app/Http/Controllers/Api/Admin/BsdkSettingsController.php" 2>>"$LOG"
+    cp "$THEME/app/Http/Controllers/Api/Admin/BsdkAddonController.php" \
+       "$PANEL/app/Http/Controllers/Api/Admin/BsdkAddonController.php" 2>>"$LOG"
+    ok "Settings & Addon API controllers installed"
 
     # Append admin routes
     if [ -f "$web" ] && ! grep -q "bsdk-routes" "$web"; then
@@ -319,6 +344,7 @@ uninstall() {
 
     # Remove theme files
     rm -f "$PANEL/resources/scripts/custom.css"
+    rm -f "$PANEL/resources/scripts/hyper-components.css"
     rm -rf "$PANEL/public/assets/bsdk"
     rm -f "$PANEL/public/assets/css/hyper.css"
     rm -f "$PANEL/public/service-worker.js"
@@ -327,9 +353,12 @@ uninstall() {
     rm -rf "$PANEL/app/Http/Controllers/Api/Client/InstallerController.php"
     rm -f "$PANEL/routes/installer.php"
     rm -rf "$PANEL/app/Http/Controllers/Admin/BsdkThemeController.php"
+    rm -rf "$PANEL/app/Http/Controllers/Api/Admin/BsdkSettingsController.php"
+    rm -rf "$PANEL/app/Http/Controllers/Api/Admin/BsdkAddonController.php"
     rm -f "$PANEL/routes/bsdk-routes.php"
     rm -f "$PANEL/config/bsdk-presets.php"
     rm -rf "$PANEL/resources/views/admin"
+    rm -rf "$PANEL/resources/scripts/components/hyper"
 
     # Remove import
     sed -i "/import '.\/custom.css'/d" "$PANEL/resources/scripts/index.tsx" 2>/dev/null
