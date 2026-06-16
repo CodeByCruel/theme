@@ -8,12 +8,13 @@ use App\Http\Controllers\Api\Admin\BsdkAddonController;
 // ── Admin Theme Settings (Blade) ──
 Route::group([
     'prefix' => 'admin/bsdk-theme',
+    'as' => 'admin.bsdk-theme',
     'middleware' => ['auth', 'admin'],
 ], function () {
-    Route::get('/', [BsdkThemeController::class, 'index']);
-    Route::post('/', [BsdkThemeController::class, 'update']);
-    Route::post('/preset/{preset}', [BsdkThemeController::class, 'applyPreset']);
-    Route::post('/reset', [BsdkThemeController::class, 'reset']);
+    Route::get('/', [BsdkThemeController::class, 'index'])->name('index');
+    Route::post('/', [BsdkThemeController::class, 'update'])->name('update');
+    Route::post('/preset/{preset}', [BsdkThemeController::class, 'applyPreset'])->name('preset');
+    Route::post('/reset', [BsdkThemeController::class, 'reset'])->name('reset');
 });
 
 // ── Hyper Settings Page (Blade) ──

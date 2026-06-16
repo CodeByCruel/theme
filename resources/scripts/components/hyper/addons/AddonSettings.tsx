@@ -64,28 +64,35 @@ export default function AddonSettings() {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
     useEffect(() => {
-        fetch('/api/admin/bsdk/addons')
+        fetch('/api/admin/bsdk/addons', {
+            headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+        })
             .then(r => r.json())
             .then(data => {
-                if (data.addons) {
-                    setAddons(prev => prev.map(addon => ({
-                        ...addon,
-                        enabled: data.addons[addon.id] ?? addon.enabled,
-                    })));
+                const addonsList = Array.isArray(data) ? data : (data.addons || []);
+                if (addonsList.length > 0) {
+                    setAddons(prev => prev.map(addon => {
+                        const found = addonsList.find((a: any) => a.id === addon.id);
+                        return { ...addon, enabled: found ? found.enabled : addon.enabled };
+                    }));
                 }
             })
             .catch(() => {});
     }, []);
 
     const toggleAddon = useCallback(async (id: string) => {
-        setAddons(prev => prev.map(a => a.id === id ? { ...a, enabled: !a.enabled } : a));
+        const addon = addons.find(a => a.id === id);
+        if (!addon) return;
+        const newEnabled = !addon.enabled;
+        setAddons(prev => prev.map(a => a.id === id ? { ...a, enabled: newEnabled } : a));
         try {
             await fetch(`/api/admin/bsdk/addons/${id}/toggle`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement)?.content || '' },
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest', 'X-CSRF-TOKEN': (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement)?.content || '' },
+                body: JSON.stringify({ enabled: newEnabled }),
             });
         } catch (e) { console.error(e); }
-    }, []);
+    }, [addons]);
 
     const filteredAddons = addons.filter(a =>
         a.name.toLowerCase().includes(search.toLowerCase()) ||

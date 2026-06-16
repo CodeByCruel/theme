@@ -192,18 +192,19 @@ export default function HyperSettings() {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
     useEffect(() => {
-        fetch('/api/admin/bsdk/settings')
+        fetch('/api/admin/bsdk/settings', {
+            headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+        })
             .then(r => r.json())
             .then(data => {
-                if (data.settings) {
-                    setCategories(prev => prev.map(cat => ({
-                        ...cat,
-                        settings: cat.settings.map(s => ({
-                            ...s,
-                            value: data.settings[s.key] ?? s.value,
-                        })),
-                    })));
-                }
+                const settingsData = data.settings || data;
+                setCategories(prev => prev.map(cat => ({
+                    ...cat,
+                    settings: cat.settings.map(s => ({
+                        ...s,
+                        value: settingsData[s.key] ?? s.value,
+                    })),
+                })));
             })
             .catch(() => {});
     }, []);
@@ -219,13 +220,13 @@ export default function HyperSettings() {
 
     const saveSettings = async () => {
         setSaving(true);
-        const settings: Record<string, string> = {};
-        categories.forEach(cat => cat.settings.forEach(s => { settings[s.key] = String(s.value); }));
+        const settingsPayload: Record<string, string> = {};
+        categories.forEach(cat => cat.settings.forEach(s => { settingsPayload[s.key] = String(s.value); }));
         try {
             await fetch('/api/admin/bsdk/settings', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement)?.content || '' },
-                body: JSON.stringify({ settings }),
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest', 'X-CSRF-TOKEN': (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement)?.content || '' },
+                body: JSON.stringify(settingsPayload),
             });
             setHasChanges(false);
         } catch (e) { console.error(e); }
