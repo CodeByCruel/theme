@@ -1,98 +1,71 @@
 # BSDK V1 — Premium Pterodactyl Theme
 
-Full dark gaming theme for Pterodactyl Panel with plugin/mod installer.
+Standalone dark gaming theme for Pterodactyl. No Blueprint. Direct panel modification.
 
-![BSDK V1](https://img.shields.io/badge/BSDK-V1-00d4ff?style=for-the-badge) ![Made by Akshit](https://img.shields.io/badge/Made%20by-Akshit-00ff88?style=for-the-badge)
+Made by **Akshit**.
 
-## Quick Install
+## Install
 
 ```bash
-git clone https://github.com/prplwtf/Nebula.git
-cd Nebula
-chmod +x install.sh
+git clone https://github.com/CodeByCruel/theme.git
+cd theme
 sudo bash install.sh
 ```
 
-The installer gives you a menu:
+## What It Does
 
-```
-╔════════════════════════════════════════════════════════╗
-║                   MAIN MENU                           ║
-╠════════════════════════════════════════════════════════╣
-║  1) Full Install      Blueprint + BSDK V1 Theme      ║
-║  2) Theme Only        Install theme on existing BP    ║
-║  3) Reinstall         Clean reinstall of theme        ║
-║  4) Update Theme      Fetch & apply latest            ║
-║  5) Update Panel      Update Pterodactyl + rebuild    ║
-║  6) Uninstall         Remove theme, keep panel        ║
-║  7) System Check      Verify requirements             ║
-║  0) Exit                                                ║
-╚════════════════════════════════════════════════════════╝
-```
+The installer:
+1. Backs up your current panel files
+2. Replaces `tailwind.config.js` with custom colors
+3. Adds `custom.css` with full theme
+4. Replaces login page, navigation, server cards
+5. Replaces master blade layout
+6. Adds plugin/mod installer API
+7. Installs public assets (logo, background, favicon)
+8. Builds frontend assets
+9. Clears caches
 
 ## Features
 
-### Theme
-- Dark gaming aesthetic with glassmorphism
-- CSS variable system — every color/font/spacing customizable
-- Admin settings panel with 7 tabs
-- Theme export/import as JSON
-- Particle background on login
-- Custom CSS/JS injection
-- 30+ animations (fade, slide, glow, float, scale)
-- Neon glow effects on hover
-- Gradient text and buttons
+**Theme:**
+- Dark gaming aesthetic
 - Glassmorphism cards
+- Neon glow effects
+- Gradient text and buttons
+- Particle background on login
+- 30+ CSS animations
+- Custom scrollbar
 - Responsive mobile support
 
-### Plugin/Mod Installer
-- **5 providers:** Modrinth, CurseForge, SpigotMC, Hangar, Polymart
-- **6 categories:** Plugins, Mods, Modpacks, Resource Packs, Shaders
-- One-click install to correct server directories
-- View and remove installed plugins
-- Search with filters (version, loader, provider)
+**Plugin/Mod Installer:**
+- Modrinth, CurseForge, SpigotMC, Hangar
+- Plugins, Mods, Resource Packs, Shaders
+- One-click install to server
 
-### Admin Settings (7 Tabs)
-| Tab | Settings |
-|-----|----------|
-| Colors | Primary, secondary, accent, danger, warning, text, borders |
-| Backgrounds | Page, card, elevated, login background |
-| Typography | 10 font families, 5 monospace fonts |
-| Layout | Border radius, sidebar, card style, button style |
-| Branding | Panel name, tagline, logo, favicon |
-| Effects | Glow, animations, gradients, particles |
-| Advanced | Custom CSS, custom JS, export/import |
-
-## API
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/client/servers/{id}/installer/search` | Search plugins |
-| POST | `/api/client/servers/{id}/installer/install` | Install plugin |
-| GET | `/api/client/servers/{id}/installer/installed` | List installed |
-| DELETE | `/api/client/servers/{id}/installer/remove` | Remove plugin |
-
-## File Structure
-
+**Customization:**
+Edit `storage/app/bsdk-theme.json` then rebuild:
+```bash
+sudo bash install.sh --rebuild
 ```
-BSDK-V1/
-├── install.sh                        # Installer
-├── conf.yml                          # Blueprint manifest
-├── admin/
-│   ├── Controller.php                # Settings controller
-│   ├── view.blade.php                # Admin UI (7 tabs)
-│   ├── admin.css                     # Admin overrides
-│   └── wrapper.blade.php             # Admin CSS vars
-├── dashboard/
-│   ├── theme.css                     # Full theme
-│   ├── wrapper.blade.php             # Dashboard CSS vars
-│   └── components/                   # React plugin browser
-├── app/                              # Backend controllers
-├── routes/                           # API routes
-├── database/migrations/              # Settings table
-├── data/public/assets/               # Logo, backgrounds
-├── icons/                            # 10 icon font sets
-└── modules/                          # JSFrame, marked.js
+
+## Files Modified
+
+| Original File | Change |
+|---------------|--------|
+| `tailwind.config.js` | New color palette |
+| `resources/scripts/index.tsx` | Import custom.css |
+| `resources/scripts/custom.css` | Full theme |
+| `resources/scripts/components/auth/LoginContainer.tsx` | Custom login |
+| `resources/scripts/components/NavigationBar.tsx` | Custom nav |
+| `resources/scripts/components/server/ServerCard.tsx` | Custom cards |
+| `resources/views/layouts/master.blade.php` | Custom layout |
+
+## Uninstall
+
+```bash
+sudo bash install.sh --uninstall
 ```
+
+Restores from backup.
 
 ## Made by Akshit

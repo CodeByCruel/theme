@@ -1,0 +1,23 @@
+{
+    "primary": "#00d4ff",
+    "secondary": "#7b68ee",
+    "accent": "#00ff88",
+    "danger": "#ff4466",
+    "warning": "#ffaa00",
+    "bg": "#0a0e17",
+    "bg2": "#111827",
+    "bg3": "#1a2332",
+    "bg4": "#243044",
+    "text": "#e4e8f0",
+    "text2": "#8899aa",
+    "text3": "#5a6a7a",
+    "radius": "8px",
+    "radius-lg": "12px",
+    "font": "Inter",
+    "font-mono": "JetBrains Mono",
+    "panel_name": "BSDK Panel",
+    "tagline": "Game Server Management",
+    "logo": "/assets/bsdk/logo.svg",
+    "favicon": "/assets/bsdk/favicon.svg",
+    "login_bg": "/assets/bsdk/background.svg"
+}
