@@ -24,7 +24,7 @@ const sidebarItems: SidebarItem[] = [
     {
         label: 'Panel Settings', icon: 'fa-cog', children: [
             { label: 'Panel Settings', icon: 'fa-cog', path: '/admin/settings' },
-            { label: 'Hyper Settings', icon: 'fa-magic', path: '/admin/hyper-settings' },
+            { label: 'BSD Settings', icon: 'fa-magic', path: '/admin/bsd-settings' },
             { label: 'Addon Settings', icon: 'fa-puzzle-piece', path: '/admin/addon-settings' },
         ],
     },

@@ -100,7 +100,7 @@
             <div class="nav-section">
                 <div class="nav-section-title">Navigation</div>
                 <a href="/admin/bsdk-theme" class="nav-item"><i class="fa fa-paint-brush"></i> BSDK Theme</a>
-                <a href="/admin/hyper-settings" class="nav-item"><i class="fa fa-magic"></i> Hyper Settings</a>
+                <a href="/admin/bsd-settings" class="nav-item"><i class="fa fa-magic"></i> BSD Settings</a>
                 <a href="/admin/addon-settings" class="nav-item active"><i class="fa fa-puzzle-piece"></i> Addon Settings</a>
             </div>
             <div class="nav-section">

@@ -17,8 +17,8 @@ Route::group([
     Route::post('/reset', [BsdkThemeController::class, 'reset'])->name('reset');
 });
 
-// ── Hyper Settings Page (Blade) ──
-Route::get('/admin/hyper-settings', [BsdkThemeController::class, 'hyperSettings'])
+// ── BSD Settings Page (Blade) ──
+Route::get('/admin/bsd-settings', [BsdkThemeController::class, 'bsdSettings'])
     ->middleware(['auth', 'admin']);
 
 // ── Addon Settings Page (Blade) ──

@@ -228,8 +228,8 @@ install() {
     mkdir -p "$PANEL/resources/views/admin"
     cp "$THEME/resources/views/admin/bsdk-theme.blade.php" \
        "$PANEL/resources/views/admin/bsdk-theme.blade.php" 2>>"$LOG"
-    cp "$THEME/resources/views/admin/hyper-settings.blade.php" \
-       "$PANEL/resources/views/admin/hyper-settings.blade.php" 2>>"$LOG"
+    cp "$THEME/resources/views/admin/bsd-settings.blade.php" \
+       "$PANEL/resources/views/admin/bsd-settings.blade.php" 2>>"$LOG"
     cp "$THEME/resources/views/admin/addon-settings.blade.php" \
        "$PANEL/resources/views/admin/addon-settings.blade.php" 2>>"$LOG"
 

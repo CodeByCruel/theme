@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hyper Settings — BSDK V1</title>
+    <title>BSD Settings — BSDK V1</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,7 +106,7 @@
             <div class="nav-section">
                 <div class="nav-section-title">Navigation</div>
                 <a href="/admin/bsdk-theme" class="nav-item"><i class="fa fa-paint-brush"></i> BSDK Theme</a>
-                <a href="/admin/hyper-settings" class="nav-item active"><i class="fa fa-magic"></i> Hyper Settings</a>
+                <a href="/admin/bsd-settings" class="nav-item active"><i class="fa fa-magic"></i> BSD Settings</a>
                 <a href="/admin/addon-settings" class="nav-item"><i class="fa fa-puzzle-piece"></i> Addon Settings</a>
             </div>
             <div class="nav-section">
@@ -119,8 +119,8 @@
         <main class="main-content">
             <div class="page-header">
                 <div>
-                    <h1><i class="fa fa-magic"></i> Hyper Settings</h1>
-                    <p>Customize the Hyper theme appearance, colors, layout, and behavior</p>
+                    <h1><i class="fa fa-magic"></i> BSD Settings</h1>
+                    <p>Customize the theme appearance, colors, layout, and behavior</p>
                 </div>
                 <div class="view-toggle">
                     <button id="viewGrid" class="active" title="Grid View"><i class="fa fa-th"></i></button>

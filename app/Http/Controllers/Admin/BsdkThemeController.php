@@ -159,9 +159,9 @@ class BsdkThemeController extends Controller
         return response()->json($settings);
     }
 
-    public function hyperSettings()
+    public function bsdSettings()
     {
-        return view('admin.hyper-settings');
+        return view('admin.bsd-settings');
     }
 
     public function addonSettings()
