@@ -158,4 +158,14 @@ class BsdkThemeController extends Controller
         $settings = array_merge($this->getDefaults(), $this->getSettings());
         return response()->json($settings);
     }
+
+    public function hyperSettings()
+    {
+        return view('admin.hyper-settings');
+    }
+
+    public function addonSettings()
+    {
+        return view('admin.addon-settings');
+    }
 }

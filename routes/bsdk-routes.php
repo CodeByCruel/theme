@@ -16,6 +16,14 @@ Route::group([
     Route::post('/reset', [BsdkThemeController::class, 'reset']);
 });
 
+// ── Hyper Settings Page (Blade) ──
+Route::get('/admin/hyper-settings', [BsdkThemeController::class, 'hyperSettings'])
+    ->middleware(['auth', 'admin']);
+
+// ── Addon Settings Page (Blade) ──
+Route::get('/admin/addon-settings', [BsdkThemeController::class, 'addonSettings'])
+    ->middleware(['auth', 'admin']);
+
 // ── Theme Preview API ──
 Route::get('/api/admin/bsdk-theme', [BsdkThemeController::class, 'preview'])
     ->middleware(['auth:api']);
