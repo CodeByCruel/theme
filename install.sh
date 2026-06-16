@@ -83,7 +83,7 @@ backup() {
     mkdir -p "$BACKUP"
 
     local files=(tailwind.config.js resources/scripts/index.tsx routes/web.php)
-    local dirs=(resources/scripts resources/views public/assets)
+    local dirs=(resources/scripts resources/views public/assets public/DGEN public/assets/css public/assets/fonts)
 
     for f in "${files[@]}"; do
         [ -f "$PANEL/$f" ] && cp "$PANEL/$f" "$BACKUP/" 2>/dev/null
@@ -160,6 +160,25 @@ install() {
     mkdir -p "$PANEL/public/assets/bsdk"
     cp "$THEME/public/assets/"* "$PANEL/public/assets/bsdk/" 2>>"$LOG"
     ok "logo.svg, background.svg, favicon.svg"
+
+    # ── 7b. Hyper Assets ──
+    step "Installing Hyper assets (DGEN, fonts, CSS)"
+    mkdir -p "$PANEL/public/assets/css"
+    mkdir -p "$PANEL/public/assets/fonts"
+    mkdir -p "$PANEL/public/DGEN/themes/Hyperv2/lang"
+    mkdir -p "$PANEL/public/DGEN/themes/Hyperv2/server/banner"
+    mkdir -p "$PANEL/public/DGEN/themes/Hyperv2/server/card"
+    mkdir -p "$PANEL/public/DGEN/themes/Hyperv2/img"
+    mkdir -p "$PANEL/public/DGEN/addons/MinecraftPlayerManager"
+
+    cp "$THEME/public/assets/css/hyper.css" "$PANEL/public/assets/css/hyper.css" 2>>"$LOG"
+    [ -f "$THEME/public/assets/css/fonts.css" ] && cp "$THEME/public/assets/css/fonts.css" "$PANEL/public/assets/css/fonts.css" 2>>"$LOG"
+    [ -f "$THEME/public/assets/css/fonts-selector.css" ] && cp "$THEME/public/assets/css/fonts-selector.css" "$PANEL/public/assets/css/fonts-selector.css" 2>>"$LOG"
+    [ -f "$THEME/public/service-worker.js" ] && cp "$THEME/public/service-worker.js" "$PANEL/public/service-worker.js" 2>>"$LOG"
+
+    cp -r "$THEME/public/assets/fonts/"* "$PANEL/public/assets/fonts/" 2>/dev/null
+    cp -r "$THEME/public/DGEN/"* "$PANEL/public/DGEN/" 2>/dev/null
+    ok "Hyper assets installed"
 
     # ── 8. Theme Config ──
     step "Installing theme config"
@@ -293,12 +312,17 @@ uninstall() {
         [ -d "$latest/scripts" ] && cp -r "$latest/scripts/"* "$PANEL/resources/scripts/"
         [ -d "$latest/views" ] && cp -r "$latest/views/"* "$PANEL/resources/views/"
         [ -d "$latest/assets" ] && cp -r "$latest/assets/"* "$PANEL/public/assets/"
+        [ -d "$latest/css" ] && cp -r "$latest/css/"* "$PANEL/public/assets/css/" 2>/dev/null
+        [ -d "$latest/DGEN" ] && cp -r "$latest/DGEN/"* "$PANEL/public/DGEN/" 2>/dev/null
         ok "Restored"
     fi
 
     # Remove theme files
     rm -f "$PANEL/resources/scripts/custom.css"
     rm -rf "$PANEL/public/assets/bsdk"
+    rm -f "$PANEL/public/assets/css/hyper.css"
+    rm -f "$PANEL/public/service-worker.js"
+    rm -rf "$PANEL/public/DGEN"
     rm -f "$PANEL/storage/app/bsdk-theme.json"
     rm -rf "$PANEL/app/Http/Controllers/Api/Client/InstallerController.php"
     rm -f "$PANEL/routes/installer.php"
