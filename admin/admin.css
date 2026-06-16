@@ -1,0 +1,97 @@
+/* BSDK V1 Admin Panel Overrides */
+:root {
+    --bsdk-primary: #00d4ff;
+    --bsdk-accent: #00ff88;
+    --bsdk-bg: #0a0e17;
+    --bsdk-bg2: #111827;
+    --bsdk-bg3: #1a2332;
+    --bsdk-text: #e4e8f0;
+    --bsdk-text2: #8899aa;
+    --bsdk-border: rgba(255,255,255,0.08);
+}
+
+/* Admin sidebar branding */
+.admin-sidebar {
+    background: var(--bsdk-bg) !important;
+    border-right: 1px solid var(--bsdk-border) !important;
+}
+
+.admin-sidebar .sidebar-brand {
+    background: linear-gradient(135deg, var(--bsdk-bg3), var(--bsdk-bg2)) !important;
+    border-bottom: 1px solid var(--bsdk-border) !important;
+}
+
+/* Admin content area */
+.admin-content {
+    background: var(--bsdk-bg) !important;
+}
+
+/* Admin cards */
+.admin-card, .card {
+    background: var(--bsdk-bg3) !important;
+    border: 1px solid var(--bsdk-border) !important;
+    border-radius: 8px !important;
+}
+
+/* Admin buttons */
+.btn-primary, button[type="submit"] {
+    background: var(--bsdk-primary) !important;
+    color: #000 !important;
+    border: none !important;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3) !important;
+}
+
+/* Admin form inputs */
+input[type="text"], input[type="email"], input[type="password"],
+input[type="number"], input[type="url"], select, textarea {
+    background: var(--bsdk-bg3) !important;
+    border: 1px solid var(--bsdk-border) !important;
+    color: var(--bsdk-text) !important;
+    border-radius: 6px !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--bsdk-primary) !important;
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Admin tables */
+table {
+    background: var(--bsdk-bg3) !important;
+}
+
+table th {
+    background: var(--bsdk-bg2) !important;
+    color: var(--bsdk-text2) !important;
+    border-bottom: 1px solid var(--bsdk-border) !important;
+}
+
+table td {
+    border-bottom: 1px solid var(--bsdk-border) !important;
+    color: var(--bsdk-text) !important;
+}
+
+/* Admin alerts */
+.alert-success {
+    background: rgba(0, 255, 136, 0.1) !important;
+    border: 1px solid rgba(0, 255, 136, 0.2) !important;
+    color: #00ff88 !important;
+}
+
+.alert-danger {
+    background: rgba(255, 68, 102, 0.1) !important;
+    border: 1px solid rgba(255, 68, 102, 0.2) !important;
+    color: #ff4466 !important;
+}
+
+/* Extension page styling */
+.extension-header {
+    background: linear-gradient(135deg, var(--bsdk-bg3), var(--bsdk-bg2)) !important;
+    border: 1px solid var(--bsdk-border) !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    margin-bottom: 24px !important;
+}

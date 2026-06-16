@@ -1,0 +1,34 @@
+info:
+  name: 'BSDK V1'
+  identifier: 'bsdkv1'
+  description: 'Full-featured Pterodactyl theme with plugin/mod installer, modpack support, and complete branding customization'
+  version: '1.0.0'
+  target: 'beta-2026-01'
+  author: 'Akshit'
+  icon: 'icons/icon.png'
+  website: ''
+  flags: ''
+
+admin:
+  view: 'admin/view.blade.php'
+  controller: 'admin/Controller.php'
+  css: 'admin/admin.css'
+  wrapper: 'admin/wrapper.blade.php'
+
+dashboard:
+  css: 'dashboard/theme.css'
+  wrapper: 'dashboard/wrapper.blade.php'
+  components: 'dashboard/components'
+
+data:
+  directory: 'data'
+  public: 'data/public'
+  console: 'data/console'
+
+requests:
+  app: 'app'
+  routers:
+    client: 'routes/client.php'
+
+database:
+  migrations: 'database/migrations'

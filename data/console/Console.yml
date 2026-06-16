@@ -1,0 +1,5 @@
+commands:
+  bsdk:reset:
+    description: 'Reset BSDK V1 theme settings to defaults'
+    signature: 'bsdk:reset'
+    class: 'Pterodactyl\Console\Commands\BsdkResetCommand'

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e17"/>
+      <stop offset="50%" style="stop-color:#111827"/>
+      <stop offset="100%" style="stop-color:#0a0e17"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#00ff88;stop-opacity:0.1"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="30%" cy="40%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="70%" cy="60%">
+      <stop offset="0%" style="stop-color:#7b68ee;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#7b68ee;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Base -->
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  
+  <!-- Glow effects -->
+  <rect width="1920" height="1080" fill="url(#glow1)"/>
+  <rect width="1920" height="1080" fill="url(#glow2)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <!-- Diagonal accent lines -->
+  <line x1="0" y1="200" x2="400" y2="0" stroke="rgba(0,212,255,0.06)" stroke-width="1"/>
+  <line x1="0" y1="400" x2="600" y2="0" stroke="rgba(0,212,255,0.04)" stroke-width="1"/>
+  <line x1="1520" y1="1080" x2="1920" y2="680" stroke="rgba(0,255,136,0.04)" stroke-width="1"/>
+  <line x1="1320" y1="1080" x2="1920" y2="480" stroke="rgba(0,255,136,0.06)" stroke-width="1"/>
+  
+  <!-- Floating particles -->
+  <circle cx="200" cy="300" r="2" fill="#00d4ff" opacity="0.3"/>
+  <circle cx="500" cy="150" r="1.5" fill="#00ff88" opacity="0.25"/>
+  <circle cx="800" cy="400" r="2.5" fill="#7b68ee" opacity="0.2"/>
+  <circle cx="1100" cy="200" r="1.8" fill="#00d4ff" opacity="0.35"/>
+  <circle cx="1400" cy="500" r="2" fill="#00ff88" opacity="0.3"/>
+  <circle cx="1700" cy="350" r="1.5" fill="#7b68ee" opacity="0.25"/>
+  <circle cx="300" cy="700" r="2.2" fill="#00d4ff" opacity="0.2"/>
+  <circle cx="900" cy="800" r="1.8" fill="#00ff88" opacity="0.3"/>
+  <circle cx="1500" cy="750" r="2" fill="#7b68ee" opacity="0.2"/>
+  
+  <!-- Subtle geometric shapes -->
+  <rect x="100" y="100" width="80" height="80" rx="12" fill="none" stroke="rgba(0,212,255,0.08)" stroke-width="1" transform="rotate(15 140 140)"/>
+  <rect x="1700" y="800" width="60" height="60" rx="10" fill="none" stroke="rgba(0,255,136,0.08)" stroke-width="1" transform="rotate(-20 1730 830)"/>
+  <circle cx="960" cy="540" r="200" fill="none" stroke="rgba(0,212,255,0.04)" stroke-width="1"/>
+  <circle cx="960" cy="540" r="300" fill="none" stroke="rgba(0,212,255,0.02)" stroke-width="1"/>
+</svg>

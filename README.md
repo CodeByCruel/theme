@@ -1,21 +1,98 @@
-[![](https://www.sourcexchange.net/storage/LbKwQ3ccOWE7BFty0jZl706o0h4uLcj7uRmmqJK0.png)](https://demo.nebula.style)
+# BSDK V1 — Premium Pterodactyl Theme
 
-![](https://www.sourcexchange.net/storage/Lt8rF83vqLcJaqK0NwG7zSfj0T6rUJHFpJJ9f1t5.png)
+Full dark gaming theme for Pterodactyl Panel with plugin/mod installer.
 
-![](https://www.sourcexchange.net/storage/gZaFeHliOXtlPeHZ61cvLlAWVfDTup6OWGpYwSq8.png)
+![BSDK V1](https://img.shields.io/badge/BSDK-V1-00d4ff?style=for-the-badge) ![Made by Akshit](https://img.shields.io/badge/Made%20by-Akshit-00ff88?style=for-the-badge)
 
-![](https://www.sourcexchange.net/storage/YOuvxPkBXAC8z1zf5W2mqpgWFvs2XjPtY2EiGlLR.png)
+## Quick Install
 
-![](https://www.sourcexchange.net/storage/45j2IUEaHNo1XmtqwvaFHgosXxCpjKgWkpRjW2ri.png)
+```bash
+git clone https://github.com/prplwtf/Nebula.git
+cd Nebula
+chmod +x install.sh
+sudo bash install.sh
+```
 
-![](https://www.sourcexchange.net/storage/ShJLkExS5J7ZkcIwjLMJpU2buQhDwIN7gSGCUAtU.png)
+The installer gives you a menu:
 
-![](https://www.sourcexchange.net/storage/m0jNhrcX7KPrISfA0yxqjMFQmGUFDMsVV8CT5dXr.png)
+```
+╔════════════════════════════════════════════════════════╗
+║                   MAIN MENU                           ║
+╠════════════════════════════════════════════════════════╣
+║  1) Full Install      Blueprint + BSDK V1 Theme      ║
+║  2) Theme Only        Install theme on existing BP    ║
+║  3) Reinstall         Clean reinstall of theme        ║
+║  4) Update Theme      Fetch & apply latest            ║
+║  5) Update Panel      Update Pterodactyl + rebuild    ║
+║  6) Uninstall         Remove theme, keep panel        ║
+║  7) System Check      Verify requirements             ║
+║  0) Exit                                                ║
+╚════════════════════════════════════════════════════════╝
+```
 
-![](https://github.com/user-attachments/assets/c205ce6b-e6d4-4ad1-8461-586add67a6c8)
+## Features
 
-![](https://github.com/user-attachments/assets/20fd1cf9-3b84-4aa4-8ae0-a52fb3eaeee4)
+### Theme
+- Dark gaming aesthetic with glassmorphism
+- CSS variable system — every color/font/spacing customizable
+- Admin settings panel with 7 tabs
+- Theme export/import as JSON
+- Particle background on login
+- Custom CSS/JS injection
+- 30+ animations (fade, slide, glow, float, scale)
+- Neon glow effects on hover
+- Gradient text and buttons
+- Glassmorphism cards
+- Responsive mobile support
 
-[![](https://www.sourcexchange.net/storage/eNCO0aaLlLgJwEpheVswX3JpkWSopmztJZ1Ix2zZ.png)](https://blueprint.zip)
+### Plugin/Mod Installer
+- **5 providers:** Modrinth, CurseForge, SpigotMC, Hangar, Polymart
+- **6 categories:** Plugins, Mods, Modpacks, Resource Packs, Shaders
+- One-click install to correct server directories
+- View and remove installed plugins
+- Search with filters (version, loader, provider)
 
-[![](https://www.sourcexchange.net/storage/bgo1KJ39oFp5bC6ZMwJHBjYrcpYZVY3PcMbM8rME.png)](https://cdn.nebula.style/etc/policies/)
+### Admin Settings (7 Tabs)
+| Tab | Settings |
+|-----|----------|
+| Colors | Primary, secondary, accent, danger, warning, text, borders |
+| Backgrounds | Page, card, elevated, login background |
+| Typography | 10 font families, 5 monospace fonts |
+| Layout | Border radius, sidebar, card style, button style |
+| Branding | Panel name, tagline, logo, favicon |
+| Effects | Glow, animations, gradients, particles |
+| Advanced | Custom CSS, custom JS, export/import |
+
+## API
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/client/servers/{id}/installer/search` | Search plugins |
+| POST | `/api/client/servers/{id}/installer/install` | Install plugin |
+| GET | `/api/client/servers/{id}/installer/installed` | List installed |
+| DELETE | `/api/client/servers/{id}/installer/remove` | Remove plugin |
+
+## File Structure
+
+```
+BSDK-V1/
+├── install.sh                        # Installer
+├── conf.yml                          # Blueprint manifest
+├── admin/
+│   ├── Controller.php                # Settings controller
+│   ├── view.blade.php                # Admin UI (7 tabs)
+│   ├── admin.css                     # Admin overrides
+│   └── wrapper.blade.php             # Admin CSS vars
+├── dashboard/
+│   ├── theme.css                     # Full theme
+│   ├── wrapper.blade.php             # Dashboard CSS vars
+│   └── components/                   # React plugin browser
+├── app/                              # Backend controllers
+├── routes/                           # API routes
+├── database/migrations/              # Settings table
+├── data/public/assets/               # Logo, backgrounds
+├── icons/                            # 10 icon font sets
+└── modules/                          # JSFrame, marked.js
+```
+
+## Made by Akshit
