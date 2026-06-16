@@ -17,19 +17,27 @@ Route::group([
     Route::post('/reset', [BsdkThemeController::class, 'reset'])->name('reset');
 });
 
-// ── BSD Settings Page (Blade) ──
-Route::get('/admin/bsd-settings', [BsdkThemeController::class, 'bsdSettings'])
-    ->middleware(['auth', 'admin']);
+// ── Admin Pages (Blade) ──
+Route::get('/admin/bsd-settings', [BsdkThemeController::class, 'bsdSettings'])->middleware(['auth', 'admin']);
+Route::get('/admin/addon-settings', [BsdkThemeController::class, 'addonSettings'])->middleware(['auth', 'admin']);
+Route::get('/admin/servers', [BsdkThemeController::class, 'adminServers'])->middleware(['auth', 'admin']);
+Route::get('/admin/users', [BsdkThemeController::class, 'adminUsers'])->middleware(['auth', 'admin']);
+Route::get('/admin/nodes', [BsdkThemeController::class, 'adminNodes'])->middleware(['auth', 'admin']);
 
-// ── Addon Settings Page (Blade) ──
-Route::get('/admin/addon-settings', [BsdkThemeController::class, 'addonSettings'])
-    ->middleware(['auth', 'admin']);
+// ── User Account Pages (Blade) ──
+Route::get('/account', [BsdkThemeController::class, 'account'])->middleware(['auth']);
+Route::get('/account/api', [BsdkThemeController::class, 'accountApi'])->middleware(['auth']);
+Route::get('/account/ssh', [BsdkThemeController::class, 'accountSsh'])->middleware(['auth']);
+Route::get('/account/activity', [BsdkThemeController::class, 'accountActivity'])->middleware(['auth']);
+
+// ── User Pages (Blade) ──
+Route::get('/staff-request', [BsdkThemeController::class, 'staffRequest'])->middleware(['auth']);
+Route::get('/notifications', [BsdkThemeController::class, 'notifications'])->middleware(['auth']);
 
 // ── Theme Preview API ──
-Route::get('/api/admin/bsdk-theme', [BsdkThemeController::class, 'preview'])
-    ->middleware(['auth:api']);
+Route::get('/api/admin/bsdk-theme', [BsdkThemeController::class, 'preview'])->middleware(['auth:api']);
 
-// ── Hyper Settings API ──
+// ── Settings API ──
 Route::group([
     'prefix' => 'api/admin/bsdk/settings',
     'middleware' => ['auth:api'],
@@ -39,7 +47,7 @@ Route::group([
     Route::post('/reset', [BsdkSettingsController::class, 'reset']);
 });
 
-// ── Addon Settings API ──
+// ── Addon API ──
 Route::group([
     'prefix' => 'api/admin/bsdk/addons',
     'middleware' => ['auth:api'],

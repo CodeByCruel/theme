@@ -168,4 +168,49 @@ class BsdkThemeController extends Controller
     {
         return view('admin.addon-settings');
     }
+
+    public function adminServers()
+    {
+        return view('admin.servers');
+    }
+
+    public function adminUsers()
+    {
+        return view('admin.users');
+    }
+
+    public function adminNodes()
+    {
+        return view('admin.nodes');
+    }
+
+    public function account()
+    {
+        return view('account.index');
+    }
+
+    public function accountApi()
+    {
+        return view('account.api');
+    }
+
+    public function accountSsh()
+    {
+        return view('account.ssh');
+    }
+
+    public function accountActivity()
+    {
+        return view('account.activity');
+    }
+
+    public function staffRequest()
+    {
+        return view('staff-request');
+    }
+
+    public function notifications()
+    {
+        return view('notifications');
+    }
 }

@@ -232,6 +232,52 @@ install() {
        "$PANEL/resources/views/admin/bsd-settings.blade.php" 2>>"$LOG"
     cp "$THEME/resources/views/admin/addon-settings.blade.php" \
        "$PANEL/resources/views/admin/addon-settings.blade.php" 2>>"$LOG"
+    cp "$THEME/resources/views/admin/servers.blade.php" \
+       "$PANEL/resources/views/admin/servers.blade.php" 2>>"$LOG"
+    cp "$THEME/resources/views/admin/users.blade.php" \
+       "$PANEL/resources/views/admin/users.blade.php" 2>>"$LOG"
+    cp "$THEME/resources/views/admin/nodes.blade.php" \
+       "$PANEL/resources/views/admin/nodes.blade.php" 2>>"$LOG"
+
+    # ── 10c. User Account Pages ──
+    step "Installing user account pages"
+    mkdir -p "$PANEL/resources/views/account"
+    cp "$THEME/resources/views/account/index.blade.php" \
+       "$PANEL/resources/views/account/index.blade.php" 2>>"$LOG"
+    cp "$THEME/resources/views/account/api.blade.php" \
+       "$PANEL/resources/views/account/api.blade.php" 2>>"$LOG"
+    cp "$THEME/resources/views/account/ssh.blade.php" \
+       "$PANEL/resources/views/account/ssh.blade.php" 2>>"$LOG"
+    cp "$THEME/resources/views/account/activity.blade.php" \
+       "$PANEL/resources/views/account/activity.blade.php" 2>>"$LOG"
+
+    # ── 10d. User Pages ──
+    step "Installing user pages"
+    cp "$THEME/resources/views/staff-request.blade.php" \
+       "$PANEL/resources/views/staff-request.blade.php" 2>>"$LOG"
+    cp "$THEME/resources/views/notifications.blade.php" \
+       "$PANEL/resources/views/notifications.blade.php" 2>>"$LOG"
+
+    # ── 10e. Email Templates ──
+    step "Installing email templates"
+    mkdir -p "$PANEL/resources/views/emails"
+    cp "$THEME/resources/views/emails/password-reset.blade.php" \
+       "$PANEL/resources/views/emails/password-reset.blade.php" 2>>"$LOG"
+    cp "$THEME/resources/views/emails/server-created.blade.php" \
+       "$PANEL/resources/views/emails/server-created.blade.php" 2>>"$LOG"
+    cp "$THEME/resources/views/emails/server-suspended.blade.php" \
+       "$PANEL/resources/views/emails/server-suspended.blade.php" 2>>"$LOG"
+
+    # ── 10f. Login Page ──
+    step "Installing login page"
+    mkdir -p "$PANEL/resources/views/auth"
+    cp "$THEME/resources/views/auth/login.blade.php" \
+       "$PANEL/resources/views/auth/login.blade.php" 2>>"$LOG"
+
+    # ── 10g. PWA Manifest ──
+    step "Installing PWA manifest"
+    cp "$THEME/public/manifest.json" \
+       "$PANEL/public/manifest.json" 2>>"$LOG"
 
     # ── 10b. Settings & Addon API Controllers ──
     step "Installing Settings & Addon API controllers"
@@ -362,6 +408,12 @@ uninstall() {
     rm -f "$PANEL/routes/bsdk-routes.php"
     rm -f "$PANEL/config/bsdk-presets.php"
     rm -rf "$PANEL/resources/views/admin"
+    rm -rf "$PANEL/resources/views/account"
+    rm -rf "$PANEL/resources/views/emails"
+    rm -rf "$PANEL/resources/views/auth/login.blade.php"
+    rm -f "$PANEL/resources/views/staff-request.blade.php"
+    rm -f "$PANEL/resources/views/notifications.blade.php"
+    rm -f "$PANEL/public/manifest.json"
     rm -rf "$PANEL/resources/scripts/components/hyper"
 
     # Remove import
